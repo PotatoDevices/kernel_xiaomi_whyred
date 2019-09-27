@@ -1,0 +1,19 @@
+version: v1.0
+name: extended_kernel_whyred_ci
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: kernel
+    task:
+      secrets:
+      - name: Tokens
+      - name: Version
+      jobs:
+      - name: Building Kernel
+        commands:
+          - checkout
+          - git clone https://github.com/attack11/scripts.git -b master script && cd script
+          - bash semaphorekernel.sh
+
